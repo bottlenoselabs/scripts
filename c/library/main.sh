@@ -13,7 +13,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 . $DIR/input.sh
 . $DIR/core.sh
 
-printf "'$0': Validating input...\n\t1=$1\n\t2=$2\n\t3=$3\n\t4=$4\n\t5=$5\n\t6=$6"
+printf "'$0': Validating input...\n\t1=$1\n\t2=$2\n\t3=$3\n\t4=$4\n\t5=$5\n\t6=$6\n"
 
 TARGET_BUILD_INPUT_DIRECTORY_PATH=`get_input_directory_path "$1"`
 if [[ ! -d "$TARGET_BUILD_INPUT_DIRECTORY_PATH" ]]; then

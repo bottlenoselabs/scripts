@@ -12,12 +12,14 @@ function build_library() {
         local CMAKE_ARCH_ARGS="-DCMAKE_OSX_ARCHITECTURES=$TARGET_BUILD_ARCH"
     fi
 
-    cmake -S $TARGET_BUILD_INPUT_DIRECTORY_PATH -B $BUILD_DIRECTORY_PATH $CMAKE_ARCH_ARGS \
+    cd $TARGET_BUILD_INPUT_DIRECTORY_PATH
+    cmake -S "./" -B $BUILD_DIRECTORY_PATH $CMAKE_ARCH_ARGS \
         `# change output directories` \
         -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=$BUILD_DIRECTORY_PATH -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$BUILD_DIRECTORY_PATH -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=$BUILD_DIRECTORY_PATH -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=$BUILD_DIRECTORY_PATH \
         `# project specific` \
         "$TARGET_BUILD_CMAKE_ARGS"
     if [[ $? -ne 0 ]]; then return $?; fi
+    cd $DIR
 
     cmake --build $BUILD_DIRECTORY_PATH --config Release
     if [[ $? -ne 0 ]]; then return $?; fi
