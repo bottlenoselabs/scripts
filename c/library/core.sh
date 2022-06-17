@@ -29,11 +29,12 @@ function build_library() {
         echo "The built file '$LIBRARY_FILE_PATH_BUILD' does not exist!"
         return 1
     fi
+    LIBRARY_FILE_PATH_BUILD_REAL=`get_full_path $LIBRARY_FILE_PATH_BUILD`
 
     LIBRARY_FILE_PATH="$TARGET_BUILD_OUTPUT_DIRECTORY_PATH/$TARGET_BUILD_LIBRARY_FILENAME_PINVOKE"
-    mv "$LIBRARY_FILE_PATH_BUILD" "$LIBRARY_FILE_PATH"
+    mv "$LIBRARY_FILE_PATH_BUILD_REAL" "$LIBRARY_FILE_PATH"
     if [[ $? -ne 0 ]]; then return $?; fi
-    echo "Copied '$LIBRARY_FILE_PATH_BUILD' to '$LIBRARY_FILE_PATH'"
+    echo "Copied '$LIBRARY_FILE_PATH_BUILD_REAL' to '$LIBRARY_FILE_PATH'"
 
     rm -r $BUILD_DIRECTORY_PATH
     if [[ $? -ne 0 ]]; then return $?; fi
