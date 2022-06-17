@@ -17,7 +17,7 @@ function build_library() {
         `# change output directories` \
         -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=$BUILD_DIRECTORY_PATH -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$BUILD_DIRECTORY_PATH -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=$BUILD_DIRECTORY_PATH -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=$BUILD_DIRECTORY_PATH \
         `# project specific` \
-        "$TARGET_BUILD_CMAKE_ARGS"
+        $TARGET_BUILD_CMAKE_ARGS
     if [[ $? -ne 0 ]]; then return $?; fi
     cd $DIR
 

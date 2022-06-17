@@ -6,7 +6,7 @@
 #   $3: The name of the library for platform invoke (P/Invoke) with C#.
 #   $4: The target operating system to build the shared library for. Possible values are "host", "windows", "linux", "macos".
 #   $5: The target architecture to build the shared library for. Possible values are "default", "x86_64", "arm64".
-#   $6: Any additional CMake arguments.
+#   $6+: Any additional CMake arguments. Each argument on and past the 6th position is passed as a seperate argument to CMake.  
 # OUTPUT: The built shared library if successful, or nothing upon first failure.
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
@@ -57,6 +57,12 @@ else
 fi
 
 TARGET_BUILD_CMAKE_ARGS="$6"
+counter=7
+until [ $counter -gt $# ]
+do
+    TARGET_BUILD_CMAKE_ARGS="$TARGET_BUILD_CMAKE_ARGS ${!counter}"
+    (( counter++ ))
+done
 
 printf "'$0': Input validated.\n"
 printf "\tTARGET_BUILD_INPUT_DIRECTORY_PATH=$TARGET_BUILD_INPUT_DIRECTORY_PATH\n"
