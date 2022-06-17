@@ -32,7 +32,7 @@ function get_operating_system() {
 #   OUTPUT: The full path.
 function get_full_path() {
     if [[ ! -d "$1" && ! -f "$1" ]]; then
-        echo "a"
+        echo ""
         return 1
     fi
 

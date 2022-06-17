@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 . $DIR/../../utility.sh
 
 function build_library() {
-    local BUILD_DIRECTORY_PATH="$TARGET_BUILD_OUTPUT_DIRECTORY_PATH/cmake-build-release"
+    local BUILD_DIRECTORY_PATH="$TARGET_BUILD_OUTPUT_DIRECTORY_PATH/cmake-build-release-$TARGET_BUILD_LIBRARY_NAME"
     rm -rf BUILD_DIRECTORY_PATH
 
     if [[ "$TARGET_BUILD_OS" == "macos" ]]; then
