@@ -37,7 +37,7 @@ function get_target_build_os {
     if [[ -z "$1" || $1 == "host" ]]; then
         local OS="$(get_operating_system)"
     else
-        local OS=""
+        local OS="$1"
     fi
 
     if [[
@@ -56,19 +56,23 @@ function get_target_build_os {
 function get_target_build_arch {
     if [[ -z "$2" || $2 == "default" ]]; then
         if [[ "$1" == "macos" ]]; then
-            echo "x86_64;arm64"
-            return 0
+            local ARCH="x86_64;arm64"
         else
-            echo "$(uname -m)"
-            return 0
+            local ARCH="$(uname -m)"
         fi
     else
-        if [[ "$2" != "x86_64" && "$2" != "arm64" ]]; then
-            echo ""
-            return 1
-        else
-            echo "$2"
-            return 0
-        fi
+        local ARCH="$2"
     fi
+
+    if [[
+        "$ARCH" != "x86_64" &&
+        "$ARCH" != "arm64" &&
+        "$ARCH" != "x86_64;arm64"
+    ]]; then
+        echo ""
+        return 1
+    fi
+
+    echo "$ARCH"
+    return 0
 }
