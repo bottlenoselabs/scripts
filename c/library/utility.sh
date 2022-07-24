@@ -1,8 +1,8 @@
 #!/bin/bash
 # NOTE: Input validation for the script; see `main.sh`.
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-. $DIR/../../utility.sh
+DIRECTORY_SCRIPTS_C_LIBRARY_UTILITY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+. $DIRECTORY_SCRIPTS_C_LIBRARY_UTILITY/../../utility.sh
 
 function get_input_directory_path {
     local PATH=`get_full_path $1`
